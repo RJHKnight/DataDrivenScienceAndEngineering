@@ -1,5 +1,9 @@
 library(imager)
 library(jpeg)
+library(ggplot2)
+library(patchwork)
+library(dplyr)
+library(gghighlight)
 
 A <- load.image("data/dog.jpg")
 
@@ -27,3 +31,24 @@ plot(as.cimg(t(X)), main = "Original", axes = false)
 plot(as.cimg(get_truncated_matrix(svd_decomp, 5)), main = "Rank 5", axes = false)
 plot(as.cimg(get_truncated_matrix(svd_decomp, 20)), main = "Rank 20", axes = false)
 plot(as.cimg(get_truncated_matrix(svd_decomp, 100)), main = "Rank 50", axes = false)
+
+
+# Singular Value Plots ----------------------------------------------------
+
+singular_values <- data.frame(k = 1:length(svd_decomp$d), sigma = svd_decomp$d)
+
+singular_value_plot <- ggplot(singular_values, aes(k, sigma)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  gghighlight(k %in% c(5,20,100), label_key = k) + 
+  ylab(expression("Singular value," ~ sigma[k]))
+
+cumulutive_energy_plot <- singular_values %>% 
+  mutate(cum_energy_pct = cumsum(sigma) / sum(sigma)) %>% 
+  ggplot(aes(k, cum_energy_pct)) + 
+  geom_point() + 
+  scale_y_continuous(labels = scales::percent) + 
+  gghighlight(k %in% c(5,20,100), label_key = k) +
+  ylab("Cumulative Energy")
+
+singular_value_plot + cumulutive_energy_plot
