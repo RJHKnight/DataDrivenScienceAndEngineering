@@ -62,12 +62,13 @@ mfrow3d(1, 2, byrow = FALSE, sharedMouse = TRUE)
 
 # Plot our unit sphere.
 next3d()
-persp3d(res$x, res$y, res$z,
+persp3d(x, y, z,
         xlim = c(-3,3),
         ylim = c(-3,3),
         zlim = c(-3,3),
         col = "red")
 
+# And the transformed sphere.
 next3d()
 persp3d(x_r, y_r, z_r,
         xlim = c(-3,3),
