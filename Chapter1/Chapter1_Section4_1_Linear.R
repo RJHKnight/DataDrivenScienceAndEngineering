@@ -31,6 +31,8 @@ ggplot(results, aes(x, y, colour = type)) +
 
 x_tilda_1 <- svd_results$v %*% solve(svd_results$d) %*% t(svd_results$u) %*% b
 x_tilda_2 <- ginv(a) %*% b
+
+# -1 for no y intercept, coef to extract the values.
 x_tilda_3 <- coef(lm(b ~ -1 + a))$a
 
 # Check all equal.
