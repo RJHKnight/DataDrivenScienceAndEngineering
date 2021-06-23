@@ -35,10 +35,9 @@ ordered_plot <- results %>%
   theme(legend.position = "bottom")
 
 
-
 # Significance Plot
 
-# Demean and scale all except dummy
+# Demean and scale all except dummy and y
 housing_norm <- mutate(housing, across(!matches("dummy|MEDV"), ~ (.x - mean(.x)) / sd(.x)))
 
 x <- lm(MEDV ~ -1 + ., data = housing_norm)
@@ -47,7 +46,8 @@ x_coef <- coef(x)[-14]
 correlation_df <- data.frame(attribute = 1:length(x_coef), correlation = x_coef)
 
 significance_plot <- ggplot(correlation_df, aes(attribute, correlation)) + 
-  geom_col()
+  geom_col(fill = "lightblue")
 
 
+# Plot them
 (unordered_plot + ordered_plot) / significance_plot
