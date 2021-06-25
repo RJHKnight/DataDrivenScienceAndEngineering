@@ -57,9 +57,12 @@ conf_int <- rbind(
 # Principle components
 pc <- svd_results$u %*% diag(svd_results$d)
 
+# Note - Principle components are perpendicular, but it may not look that way due to the sizing of the plot...
 ggplot(raw_data, aes(X1, X2)) + 
   geom_point(alpha = 0.2) + 
   geom_point(aes(colour = multiple), alpha = 1, data = conf_int) +
   # PC1
   annotate("segment", x = row_means[1], xend = pc[1,1] + row_means[1], y = row_means[2], yend = pc[2,1] + row_means[2], colour = "purple", size=1, arrow=arrow()) + 
-  annotate("segment", x = row_means[1], xend = pc[1,2] + row_means[1], y = row_means[2], yend = pc[2,2] + row_means[2], colour = "purple", size=1, arrow=arrow())
+  annotate("segment", x = row_means[1], xend = pc[1,2] + row_means[1], y = row_means[2], yend = pc[2,2] + row_means[2], colour = "purple", size=1, arrow=arrow()) + 
+  xlab("x") + 
+  ylab("y") 
