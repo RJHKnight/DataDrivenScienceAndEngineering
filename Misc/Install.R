@@ -6,3 +6,7 @@ if (!require("MASS")) install.packages("MASS")
 if (!require("imager")) install.packages("imager")
 if (!require("patchwork")) install.packages("patchwork")
 if (!require("rgl")) install.packages("rgl")
+
+# Matlab
+if (!require("rmatio")) install.packages("rmatio")
+    
