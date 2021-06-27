@@ -25,10 +25,11 @@ for (i in 1:36)
 }
 
 # Plot all angles for the first person
-
 par(mfrow = c(8, 8), mar = rep(1, 4))
 
 for (i in 1:num_faces[1])
 {
   plot(get_one_image(1,i), axes = FALSE)
 }
+
+
