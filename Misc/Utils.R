@@ -26,6 +26,17 @@ plot_matrix <- function(x)
     scale_fill_viridis_c()
 }
 
+plot_sv <- function(d)
+{
+  singular_values <- data.frame(s = d) %>% 
+    mutate(j = 1:n()) 
+  
+  ggplot(singular_values, aes(j, s)) + 
+    geom_point() + 
+    geom_line() + 
+    scale_y_log10()
+}
+
 
 # Create image based on a long vector of greyscale values
 get_one_image <- function(x)
