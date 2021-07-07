@@ -4,6 +4,8 @@ library(RSpectra)
 library(MASS)
 library(tidyverse)
 
+source("./Misc/Utils.R")
+
 all_faces <- read.mat("Data/allFaces.mat")
 
 # Extract meta data
@@ -18,13 +20,6 @@ training_faces <- training_faces - avg_face
 
 # Full SVD takes a very long time, to speed it up I will just compute for the first 800 singular values.
 svd_decomp <- svds(training_faces, k = 800)
-
-# Create image based on a long vector of greyscale values
-get_one_image <- function(x)
-{
-  x_mat <- matrix(x, nrow = 192)
-  return (as.cimg(t(x_mat)))
-}
 
 # Plot Average Face
 plot(get_one_image(avg_face))

@@ -1,20 +1,13 @@
 library(rmatio)
 library(imager)
 
+source("./Misc/Utils.R")
+
 all_faces <- read.mat("Data/allFaces.mat")
 
 # Extract meta data
 num_faces <- all_faces$nfaces
 num_persons <- length(num_faces)
-
-get_one_image <- function(person, angle)
-{
-  index <- sum(num_faces[1:person-1]) + angle
-  this_data <- all_faces$faces[,index]
-  this_data <- matrix(this_data, nrow = all_faces$n, byrow = FALSE)
-  
-  return (as.cimg(t(this_data)))
-}
 
 # Plot image 1 for the first 36 people
 par(mfrow = c(6, 6), mar = rep(1, 4))

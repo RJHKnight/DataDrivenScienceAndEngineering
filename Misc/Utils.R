@@ -25,3 +25,11 @@ plot_matrix <- function(x)
     theme_bw() + 
     scale_fill_viridis_c()
 }
+
+
+# Create image based on a long vector of greyscale values
+get_one_image <- function(x)
+{
+  x_mat <- matrix(x, nrow = 192)
+  return (as.cimg(t(x_mat)))
+}

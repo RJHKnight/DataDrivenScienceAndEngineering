@@ -51,9 +51,9 @@ singular_values <- data.frame(s = svd_res$d) %>%
   mutate(j = 1:n()) %>% 
   mutate(cum_s = cumsum(s) / sum(s)) %>% 
   mutate(type = case_when(
-    s > cutoff ~ "below_cutoff", 
-    j < r_90   ~ "below_r90",
-    TRUE       ~ "other"))
+    s > cutoff ~ "Above Cutoff", 
+    j < r_90   ~ "90th Percentile",
+    TRUE       ~ "Other"))
 
 base_plot <- ggplot(singular_values, aes(j, s)) + 
   geom_line() + 
@@ -81,5 +81,4 @@ p3 <- ggplot(singular_values, aes(j, cum_s)) +
   theme(legend.position = "bottom") + 
   ggtitle("90% Cutoff")
   
-
 (p1 + p2) / p3
