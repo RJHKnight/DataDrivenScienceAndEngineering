@@ -32,8 +32,8 @@ plot(as.cimg(t(x_svdr)), main = "Rand. SVD", axes = FALSE)
 
 
 # Power iterations
-x <- matrix(rnorm(1000 * 100), nrow = 1000)
 
+x <- matrix(rnorm(1000 * 100), nrow = 1000)
 svd_res <- svd(x)
 
 # Dummy example with linearly decaying sigma
@@ -48,7 +48,6 @@ create_sigma_df <- function(s, i)
 }
 
 y <- x
-
 sigma_res <- create_sigma_df(s, 0)
 
 for (q in 1:15)
@@ -59,7 +58,6 @@ for (q in 1:15)
   
   this_sigma <- create_sigma_df(this_svd_res$d, q)
   sigma_res <- rbind(sigma_res, this_sigma)
-  
 }
 
 sigma_res %>% 
