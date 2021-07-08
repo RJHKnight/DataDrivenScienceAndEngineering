@@ -27,10 +27,10 @@ get_truncated_matrix <- function(decomp, rank)
 # 4 Subplots
 par(mfrow = c(2, 2))
 
-plot(as.cimg(t(X)), main = "Original", axes = false)
-plot(as.cimg(get_truncated_matrix(svd_decomp, 5)), main = "Rank 5", axes = false)
-plot(as.cimg(get_truncated_matrix(svd_decomp, 20)), main = "Rank 20", axes = false)
-plot(as.cimg(get_truncated_matrix(svd_decomp, 100)), main = "Rank 50", axes = false)
+plot(as.cimg(t(X)), main = "Original", axes = FALSE)
+plot(as.cimg(get_truncated_matrix(svd_decomp, 5)), main = "Rank 5", axes = FALSE)
+plot(as.cimg(get_truncated_matrix(svd_decomp, 20)), main = "Rank 20", axes = FALSE)
+plot(as.cimg(get_truncated_matrix(svd_decomp, 100)), main = "Rank 50", axes = FALSE)
 
 
 # Singular Value Plots ----------------------------------------------------

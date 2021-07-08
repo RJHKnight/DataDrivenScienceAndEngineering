@@ -8,7 +8,7 @@
 rsvd <- function(x, r, q, p)
 {
   # Sample column space of x with a random projection matrix
-  n <- nrow(x)
+  n <- ncol(x)
   proj_mat <- matrix(rnorm(n * (r+p)), ncol = r+p)
   z <- x %*% proj_mat
   
