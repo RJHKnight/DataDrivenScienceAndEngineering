@@ -43,7 +43,6 @@ p2 <- data.frame(t = t, f = Re(f_filt)) %>%
   theme_bw()
 
 # Power spectrum
-
 p3 <- data.frame(freq = freq, psd = psd) %>% 
   head(500) %>% 
   ggplot(aes(freq, psd)) + 
@@ -54,5 +53,4 @@ p3 <- data.frame(freq = freq, psd = psd) %>%
   ggtitle("Power Spectrum") + 
   theme_bw()
 
-f_
 p1 / p2 / p3
