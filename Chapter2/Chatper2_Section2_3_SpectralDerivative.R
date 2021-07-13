@@ -31,7 +31,6 @@ df_hat <- 1i * kappa * f_hat
 df_fft <- Re(fft(df_hat, inverse = TRUE)) / n
 
 # Plotting
-
 res_df <- rbind(
   data.frame(x = x, f = df,     type = "Analytical Derivative"),
   data.frame(x = x, f = df_fd,  type = "Finite Difference"),
