@@ -44,3 +44,22 @@ get_one_image <- function(x)
   x_mat <- matrix(x, nrow = 192)
   return (as.cimg(t(x_mat)))
 }
+
+
+# Rearrange the output of an FFT so the 0 frequency is in the center
+fftshift <- function(x)
+{
+  n <- length(x)
+  mid_point <- ceiling(n/2)
+  
+  return (c(x[(mid_point+1):n], x[1:mid_point]))
+}
+
+# Rearrange the output of an FFT so the 0 frequency is in the center
+ifftshift <- function(x)
+{
+  n <- length(x)
+  mid_point <- floor(n/2)
+  
+  return (c(x[(mid_point+1):n], x[1:mid_point]))
+}
