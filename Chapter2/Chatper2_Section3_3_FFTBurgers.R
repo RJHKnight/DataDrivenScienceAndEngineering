@@ -59,3 +59,6 @@ u_t_df %>%
 ggplot(u_t_df, aes(x, u)) + 
   geom_point() + 
   transition_time(time) 
+
+
+plot_matrix(res[,-1])
