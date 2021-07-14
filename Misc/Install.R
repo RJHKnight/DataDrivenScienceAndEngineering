@@ -3,6 +3,7 @@ if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("MASS")) install.packages("MASS")
 if (!require("deSolve")) install.packages("deSolve")
 if (!require("pracma")) install.packages("pracma")
+if (!require("tuneR")) install.packages("tuneR")
 
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")
