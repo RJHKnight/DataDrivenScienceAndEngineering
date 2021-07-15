@@ -3,8 +3,6 @@ library(imager)
 source("Misc/Utils.R")
 
 A <- load.image("data/dog.jpg")
-
-# as.matrix returns the matrix in column then row order - we need to transpose to get alignment correct.
 X <- as.matrix(grayscale(A))
 
 plot(as.cimg(X))
