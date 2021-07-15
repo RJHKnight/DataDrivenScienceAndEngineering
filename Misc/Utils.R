@@ -47,19 +47,44 @@ get_one_image <- function(x)
 
 
 # Rearrange the output of an FFT so the 0 frequency is in the center
-fftshift <- function(x)
+fftshift <- function(x) 
 {
-  n <- length(x)
-  mid_point <- ceiling(n/2)
+  if (is.vector(x))
+    return (fftshift_vector(x))
   
-  return (c(x[(mid_point+1):n], x[1:mid_point]))
+  # First by rows, then by cols
+  x <- flip_up_down(x)
+  return (flip_left_right(x))
 }
 
-# Rearrange the output of an FFT so the 0 frequency is in the center
 ifftshift <- function(x)
 {
+  if (is.vector(x))
+    return (fftshift_vector(x, inverse = TRUE))
+  
+  # First by cols, then by rows
+  x <- flip_left_right(x, inverse = TRUE)
+  return(flip_up_down(x, inverse = TRUE))
+}
+
+flip_up_down <- function(x, inverse = FALSE) 
+{
+  n <- nrow(x)
+  mid_point <- ifelse(inverse, floor(n/2), ceiling(n/2))
+  return(rbind(x[((mid_point+1):n),], x[(1:mid_point), ]))
+}
+
+flip_left_right <- function(x, inverse = FALSE) 
+{
+  n <- ncol(x)
+  mid_point <- ifelse(inverse, floor(n/2), ceiling(n/2))
+  return(cbind(x[,((mid_point+1):n)], x[, 1:mid_point]))
+}
+
+fftshift_vector <- function(x, inverse = FALSE)
+{
   n <- length(x)
-  mid_point <- floor(n/2)
+  mid_point <- ifelse(inverse, floor(n/2), ceiling(n/2))
   
   return (c(x[(mid_point+1):n], x[1:mid_point]))
 }
