@@ -36,14 +36,14 @@ s_df <- rbind(s_l1_df, s_l2_df)
 p1 <- ggplot(s_df, aes(n, s, colour = type)) + 
   geom_line() +
   facet_wrap(~ type, nrow = 1) +
-  theme(legend.position = "none") + 
-  theme_bw()
+  theme_bw() + 
+  theme(legend.position = "none") 
 
 # Histogram of S
 p2 <- ggplot(s_df, aes(s, fill = type)) + 
-  geom_histogram() +
+  geom_histogram(bins = 20) +
   facet_wrap(~ type, nrow = 1) +
-  theme(legend.position = "none") + 
-  theme_bw()
+  theme_bw() + 
+  theme(legend.position = "none") 
 
 p1 / p2
