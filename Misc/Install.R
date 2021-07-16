@@ -6,6 +6,7 @@ if (!require("pracma")) install.packages("pracma")
 if (!require("tuneR")) install.packages("tuneR")
 if (!require("wavelets")) install.packages("wavelets")
 if (!require("CVXR")) install.packages("CVXR")
+if (!require("dtt")) install.packages("dtt")
 
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")
