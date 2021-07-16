@@ -4,6 +4,7 @@ if (!require("MASS")) install.packages("MASS")
 if (!require("deSolve")) install.packages("deSolve")
 if (!require("pracma")) install.packages("pracma")
 if (!require("tuneR")) install.packages("tuneR")
+if (!require("wavelets")) install.packages("wavelets")
 
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")
