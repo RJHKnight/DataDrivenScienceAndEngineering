@@ -39,9 +39,9 @@ plot_sv <- function(d)
 
 
 # Create image based on a long vector of greyscale values
-get_one_image <- function(x)
+get_one_image <- function(x, n_row = 192)
 {
-  x_mat <- matrix(x, nrow = 192)
+  x_mat <- matrix(x, nrow = n_row)
   return (as.cimg(t(x_mat)))
 }
 
