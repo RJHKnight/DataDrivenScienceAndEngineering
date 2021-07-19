@@ -7,8 +7,6 @@ source("Misc/Utils.R")
 
 
 # Preparation of testing and training -------------------------------------
-
-
 all_faces <- rmatio::read.mat("Data/allFaces.mat")
 x <- all_faces$faces
 n_faces <- all_faces$nfaces
