@@ -8,6 +8,7 @@ if (!require("wavelets")) install.packages("wavelets")
 if (!require("CVXR")) install.packages("CVXR")
 if (!require("dtt")) install.packages("dtt")
 if (!require("glmnet")) install.packages("glmnet")
+if (!require("RSpectra")) install.packages("RSpectra")
 
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")

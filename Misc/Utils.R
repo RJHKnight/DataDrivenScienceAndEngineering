@@ -88,3 +88,8 @@ fftshift_vector <- function(x, inverse = FALSE)
   
   return (c(x[(mid_point+1):n], x[1:mid_point]))
 }
+
+ml_divide <- function(A, B)
+{
+  MASS::ginv(t(A)%*%A)%*%t(A)%*%B
+}
