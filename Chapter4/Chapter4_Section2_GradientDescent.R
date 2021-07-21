@@ -81,6 +81,7 @@ p <- plot_matrix(f_quad, x_val = x, y_val = y) +
 animate(p, height = 800, width = 800)
 
 
+
 # Using interpolation -------------------------------------------------------------
 
 h <- 0.1
