@@ -1,4 +1,3 @@
-library(rgl)
 library(tidyverse)
 library(patchwork)
 library(pracma)
