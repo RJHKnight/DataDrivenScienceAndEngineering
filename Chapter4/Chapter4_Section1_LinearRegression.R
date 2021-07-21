@@ -34,13 +34,14 @@ p_6 <- optim(c(1,1), function(par) fit_three(par, x, y2), method = "BFGS")
 
 
 par(mfrow = c(2, 1))
+plot(x, y2, main = "Without Outlier", ylim = c(0,4))
+lines(x, p_4$par[1]*x + p_4$par[2], col = "red")
+lines(x, p_5$par[1]*x + p_5$par[2], col = "green")
+lines(x, p_6$par[1]*x + p_6$par[2], col = "blue")
+legend(1.5, 3.5, legend = c("L inf", "L1", "L2"), col = c("red", "green", "blue"), lty = 1)
 
-plot(x, y, main = "With Outlier")
+plot(x, y, main = "With Outlier", ylim = c(0,4))
 lines(x, p_1$par[1]*x + p_1$par[2], col = "red")
 lines(x, p_2$par[1]*x + p_2$par[2], col = "green")
 lines(x, p_3$par[1]*x + p_3$par[2], col = "blue")
 
-plot(x, y2, main = "Without Outlier")
-lines(x, p_1$par[1]*x + p_4$par[2], col = "red")
-lines(x, p_2$par[1]*x + p_5$par[2], col = "green")
-lines(x, p_3$par[1]*x + p_6$par[2], col = "blue")

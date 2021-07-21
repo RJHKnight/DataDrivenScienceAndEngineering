@@ -9,6 +9,7 @@ if (!require("CVXR")) install.packages("CVXR")
 if (!require("dtt")) install.packages("dtt")
 if (!require("glmnet")) install.packages("glmnet")
 if (!require("RSpectra")) install.packages("RSpectra")
+if (!require("pracma")) install.packages("pracma")
 
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")

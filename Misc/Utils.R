@@ -13,15 +13,25 @@ sphere <- function()
 }
 
 # Equivalent to imshow in matlab
-plot_matrix <- function(x)
+plot_matrix <- function(x, x_val = NA, y_val = NA)
 {
   x_df <- data.frame(x) %>% 
     mutate(y = 1:n()) %>% 
     pivot_longer(names_to = "x", names_prefix = "X", values_to = "z", -y) %>% 
     mutate(x = as.integer(x))
   
-  ggplot(x_df, aes(x,y, fill = z)) + 
-    geom_raster()  + 
+  if (any(!is.na(x_val)))
+  {
+    x_df$x <- rep(x_val, ncol(x))
+  }
+  
+  if (any(!is.na(y_val)))
+  {
+    x_df$y <- rep(y_val, each = nrow(x))
+  }
+  
+  ggplot(x_df, aes(x,y)) + 
+    geom_raster(aes(fill = z))  + 
     theme_bw() + 
     scale_fill_viridis_c()
 }
