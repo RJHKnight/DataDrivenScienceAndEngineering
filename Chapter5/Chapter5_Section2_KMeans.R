@@ -38,6 +38,7 @@ y_train <- c(y_1[train_index], y_2[train_index])
 y_test  <- c(y_1[test_index],  y_2[test_index])
 
 xy_train <- cbind(x_train, y_train)
+xy_test <- cbind(x_test, y_test)
 
 # KMeans ------------------------------------------------------------------
 
@@ -100,4 +101,19 @@ ggplot(k_means_res$diagnostics, aes(x,y, colour = as.factor(classification))) +
   geom_point() + 
   geom_point(data = k_means_res$centers, colour = "black", size = 5, shape = 1) + 
   geom_abline(data = separation_line, aes(intercept = b, slope = -1/slope)) + 
-  facet_wrap(~ step)
+  facet_wrap(~ step) +
+  theme_bw() + 
+  ggtitle("k-means algorithm steps")
+
+
+# Out of sample
+data.frame(x = x_test, y = y_test) %>% 
+  mutate(category = if_else(row_number() <= 50, "1", "2")) %>% 
+  ggplot(aes(x,y, colour = category)) + 
+  geom_point() +
+  geom_abline(data = filter(separation_line, step == max(step)), 
+              aes(intercept = b, slope = -1/slope), 
+              linetype = "dashed") +
+  theme_bw() + 
+  ggtitle("Test set with k-means divider")
+           
