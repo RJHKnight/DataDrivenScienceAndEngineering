@@ -18,9 +18,7 @@ svd_res <- svd(cat_dog - rowMeans(cat_dog))
 svd_res_wav <- svd(cat_dog_wave - rowMeans(cat_dog_wave))
 
 
-
 # Raw Data ----------------------------------------------------------------
-
 
 par(mfrow = c(2, 2))
 
