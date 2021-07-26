@@ -1,5 +1,4 @@
 library(tidyverse)
-library(gganimate)
 
 n <- 150
 train_index <- 1:100
