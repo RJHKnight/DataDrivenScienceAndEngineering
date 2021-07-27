@@ -1,4 +1,5 @@
 library(tidyverse)
+library(gganimate)
 
 n <- 150
 train_index <- 1:100
@@ -96,13 +97,15 @@ separation_line <- k_means_res$centers %>%
   )
 
 
-ggplot(k_means_res$diagnostics, aes(x,y, colour = as.factor(classification))) + 
+k_plot <- ggplot(k_means_res$diagnostics, aes(x,y, colour = as.factor(classification), group = interaction(step, x))) + 
   geom_point() + 
   geom_point(data = k_means_res$centers, colour = "black", size = 5, shape = 1) + 
   geom_abline(data = separation_line, aes(intercept = b, slope = -1/slope)) + 
-  facet_wrap(~ step) +
+  transition_time(step) +
   theme_bw() + 
   ggtitle("k-means algorithm steps")
+
+animate(k_plot, )
 
 
 # Out of sample
