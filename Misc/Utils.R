@@ -103,3 +103,13 @@ ml_divide <- function(A, B)
 {
   MASS::ginv(t(A)%*%A)%*%t(A)%*%B
 }
+
+no_label_dend <- function(x) 
+{
+  if (stats::is.leaf(x)) 
+  {
+    attr(x, "label") <- NULL 
+  }
+  
+  return(x)
+}

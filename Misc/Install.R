@@ -15,7 +15,9 @@ if (!require("tseries")) install.packages("tseries")
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")
 if (!require("patchwork")) install.packages("patchwork")
+if (!require("gganimate")) install.packages("gganimate")
 if (!require("rgl")) install.packages("rgl")
+if (!require("dendextend")) install.packages("dendextend")
 
 # Matlab
 if (!require("rmatio")) install.packages("rmatio")
