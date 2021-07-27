@@ -11,6 +11,8 @@ if (!require("glmnet")) install.packages("glmnet")
 if (!require("RSpectra")) install.packages("RSpectra")
 if (!require("pracma")) install.packages("pracma")
 if (!require("tseries")) install.packages("tseries")
+if (!require("mclust")) install.packages("mclust")
+if (!require("dmvnorm")) install.packages("dmvnorm")
 
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")
@@ -21,4 +23,3 @@ if (!require("dendextend")) install.packages("dendextend")
 
 # Matlab
 if (!require("rmatio")) install.packages("rmatio")
-    
