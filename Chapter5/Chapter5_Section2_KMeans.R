@@ -83,7 +83,7 @@ my_kmeans <- function(initial_guess_1, initial_guess_2, xy, num_iterations = 4)
   return (list(centers = centers, diagnostics = res_df))
 }
 
-k_means_res <- my_kmeans(c(-1,0), c(1,-0.5), xy_train)
+k_means_res <- my_kmeans(c(-1,0), c(1,-0.5), xy_train, num_iterations = 10)
 
 # Calculate intercept and gradient of the separation line
 separation_line <- k_means_res$centers %>% 
@@ -99,13 +99,14 @@ separation_line <- k_means_res$centers %>%
 
 k_plot <- ggplot(k_means_res$diagnostics, aes(x,y, colour = as.factor(classification), group = interaction(step, x))) + 
   geom_point() + 
-  geom_point(data = k_means_res$centers, colour = "black", size = 5, shape = 1) + 
+  geom_point(data = k_means_res$centers, size = 7.5, shape = 19) + 
   geom_abline(data = separation_line, aes(intercept = b, slope = -1/slope)) + 
   transition_time(step) +
+  enter_fade() + 
   theme_bw() + 
   ggtitle("k-means algorithm steps")
 
-animate(k_plot, )
+animate(k_plot, height = 1000, width = 1000)
 
 
 # Out of sample
