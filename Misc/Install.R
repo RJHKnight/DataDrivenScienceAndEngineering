@@ -14,6 +14,7 @@ if (!require("tseries")) install.packages("tseries")
 if (!require("mclust")) install.packages("mclust")
 if (!require("dmvnorm")) install.packages("dmvnorm")
 if (!require("e1071")) install.packages("e1071")
+if (!require("keras")) install.packages("keras")
 
 # Plotting and Visualisation
 if (!require("imager")) install.packages("imager")
