@@ -4,8 +4,6 @@ library(tidyverse)
 library(imager)
 library(patchwork)
 
-use_session_with_seed(1)
-
 dog_wav <- read.mat("Data/dogData_w.mat")$dog_wave
 cat_wav <- read.mat("Data/catData_w.mat")$cat_wave
 
