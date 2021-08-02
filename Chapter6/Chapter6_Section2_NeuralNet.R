@@ -4,6 +4,8 @@ library(tidyverse)
 library(imager)
 library(patchwork)
 
+tensorflow::set_random_seed(42)
+  
 dog_wav <- read.mat("Data/dogData_w.mat")$dog_wave
 cat_wav <- read.mat("Data/catData_w.mat")$cat_wave
 
