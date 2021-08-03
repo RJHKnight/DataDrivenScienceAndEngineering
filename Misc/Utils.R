@@ -113,3 +113,12 @@ no_label_dend <- function(x)
   
   return(x)
 }
+
+# Very naively handle the situation where xp / yp is out of the range of x,y
+my_interp2 <- function(x,y,Z, xp, yp, method = c("linear", "nearest", "constant"))
+{
+  xp = max(min(x), min(xp, max(x)))
+  yp = max(min(y), min(yp, max(y)))
+  
+  return (interp2(x, y, Z, xp, yp, method = method))
+}
