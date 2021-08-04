@@ -60,11 +60,12 @@ model %>% compile(
   metrics = c('accuracy')
 )
 
-# Train model
+# Train model - a CUDA GPU makes this a lot faster (< 1 sec per epoch)
+# reduce the epochs if you are training on a CPU.
 model %>% fit(
   x_train, y_train,
   batch_size = 128,
-  epochs = 10,
+  epochs = 50,
   validation_split = 0.2
 )
 
