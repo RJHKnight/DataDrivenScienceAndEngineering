@@ -101,7 +101,7 @@ save_model_tf(model, filepath = "Data/lorenzmodel")
 x_0 <- 30 * (runif(3) - 0.5)
 names(x_0) <- c("x", "y", "z")
 
-num_pred <- 50
+num_pred <- 20
 actual <- ode(x_0, seq(0,8, by = 0.01), lorenz, params, method = "ode45")
 predictions <- matrix(NA, nrow = num_pred, ncol = 3)
 predictions[1,] <- x_0/65
