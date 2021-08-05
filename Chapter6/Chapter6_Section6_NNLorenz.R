@@ -1,6 +1,7 @@
 library(deSolve)
 library(rgl)
 library(tidyverse)
+library(keras)
 
 # Simulate Lorenz attractor.
 lorenz <- function(t, state, parms)
@@ -62,27 +63,42 @@ y_train <- training_df %>%
   select(x,y,z) %>% 
   as.matrix()
 
+log_sig <- function(x)
+{
+  k_log(1 /(1+ k_exp(-x)))
+}
+
+rad_bas <- function(x)
+{
+   k_exp(k_pow(-x,2))
+}
+
 # Network structure
 model <- keras_model_sequential() %>%
-  layer_dense(units = 10, activation = "sigmoid", input_shape = 3) %>% 
-  layer_dense(units = 10, activation = "sigmoid") %>%
+  layer_dense(units = 10, activation = log_sig, input_shape = 3) %>% 
+  layer_dense(units = 10, activation = rad_bas) %>%
   layer_dense(units = 10, activation = "linear") %>% 
   layer_dense(unit = 3, activation =  "linear")
 
 model %>% compile(
   loss = "mse",
-  optimizer = optimizer_sgd(),
-  metrics = list("mean_absolute_error")
+  optimizer = optimizer_adam(),
+  metrics = list("mae")
 )
 
 model %>% fit(
-  x_train, y_train,
-  batch_size = 2^10,
+  x_train/65, y_train/65,
   epochs = 1000,
-  validation_split = 0.2
+  batch_size = 32
 )
 
+save_model_tf(model, filepath = "Data/lorenzmodel")
+
+# If you don't want to train - you can load the model using:
+#model <- load_model_tf("Data/lorenzmodel/")
+
 # Compare actual vs NN for 10 random runs
+num_steps <- length(seq(0,8, by = 0.01)) 
 
 for (i in 1:10)
 {
@@ -90,5 +106,26 @@ for (i in 1:10)
   names(x_0) <- c("x", "y", "z")
   
   actual <- ode(x_0, seq(0,8, by = 0.01), lorenz, params, method = "ode45")
-
+  predictions <- matrix(NA, nrow = 10, ncol = 3)
+  predictions[1,] <- x_0/65
+  
+  for (j in 2:10)
+  {
+    cat(paste("Running for ", j, "\n"))
+    predictions[j,] <- predict(model, matrix(predictions[j-1,], nrow = 1))
+  }
 }
+
+colnames(actual) <- c("t", "x_actual", "y_actual", "z_actual")
+colnames(predictions) <- c("x_pred", "y_pred", "z_pred")
+
+res <- cbind(data.frame(actual[1:10,]),
+             data.frame(65*predictions)) %>% 
+  pivot_longer(-t, names_to = c("var", "type"), names_sep = "_", values_to = "val")
+
+
+ggplot(res, aes(t, val, colour = type)) + 
+  geom_point() + 
+  geom_line() + 
+  facet_wrap(~ var, ncol = 1, scales = "free_y") + 
+  theme_bw()
