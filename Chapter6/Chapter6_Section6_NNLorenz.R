@@ -97,29 +97,26 @@ save_model_tf(model, filepath = "Data/lorenzmodel")
 # If you don't want to train - you can load the model using:
 #model <- load_model_tf("Data/lorenzmodel/")
 
-# Compare actual vs NN for 10 random runs
-num_steps <- length(seq(0,8, by = 0.01)) 
+# Compare actual vs NN 
+x_0 <- 30 * (runif(3) - 0.5)
+names(x_0) <- c("x", "y", "z")
 
-for (i in 1:10)
+num_pred <- 50
+actual <- ode(x_0, seq(0,8, by = 0.01), lorenz, params, method = "ode45")
+predictions <- matrix(NA, nrow = num_pred, ncol = 3)
+predictions[1,] <- x_0/65
+
+for (j in 2:num_pred)
 {
-  x_0 <- 30 * (runif(3) - 0.5)
-  names(x_0) <- c("x", "y", "z")
-  
-  actual <- ode(x_0, seq(0,8, by = 0.01), lorenz, params, method = "ode45")
-  predictions <- matrix(NA, nrow = 10, ncol = 3)
-  predictions[1,] <- x_0/65
-  
-  for (j in 2:10)
-  {
-    cat(paste("Running for ", j, "\n"))
-    predictions[j,] <- predict(model, matrix(predictions[j-1,], nrow = 1))
-  }
+  cat(paste("Running for ", j, "\n"))
+  predictions[j,] <- predict(model, matrix(predictions[j-1,], nrow = 1))
 }
+
 
 colnames(actual) <- c("t", "x_actual", "y_actual", "z_actual")
 colnames(predictions) <- c("x_pred", "y_pred", "z_pred")
 
-res <- cbind(data.frame(actual[1:10,]),
+res <- cbind(data.frame(actual[1:num_pred,]),
              data.frame(65*predictions)) %>% 
   pivot_longer(-t, names_to = c("var", "type"), names_sep = "_", values_to = "val")
 
