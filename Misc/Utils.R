@@ -122,3 +122,19 @@ my_interp2 <- function(x,y,Z, xp, yp, method = c("linear", "nearest", "constant"
   
   return (interp2(x, y, Z, xp, yp, method = method))
 }
+
+plot_cylinder <- function(this_phi)
+{
+  x_df <- data.frame(
+    y = 1:199,
+    x = rep(1:449, each = 199),
+    z = this_phi
+  )
+  
+  ggplot(x_df, aes(x,y)) + 
+    geom_raster(aes(fill = z)) + 
+    geom_contour(aes(z = z), breaks = c(-0.5,-0.04, -0.02, 0.02, 0.04, 0.5)) + 
+    scale_fill_gradient2() +  
+    theme_void() + 
+    theme(legend.position = "none")
+}
