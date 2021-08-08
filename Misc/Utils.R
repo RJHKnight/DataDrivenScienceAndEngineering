@@ -126,14 +126,17 @@ my_interp2 <- function(x,y,Z, xp, yp, method = c("linear", "nearest", "constant"
 plot_cylinder <- function(this_phi)
 {
   x_df <- data.frame(
-    y = 1:199,
-    x = rep(1:449, each = 199),
+    y = seq(-2, 2, length.out = 199),
+    x = rep(seq(-1, 8, length.out = 449), each = 199),
     z = this_phi
   )
+  
+  theta <- seq(0,2*pi,length.out=100)
   
   ggplot(x_df, aes(x,y)) + 
     geom_raster(aes(fill = z)) + 
     geom_contour(aes(z = z), breaks = c(-0.5,-0.04, -0.02, 0.02, 0.04, 0.5)) + 
+    annotate("path", x = 0.5 * cos(theta), y = 0.5 * sin(theta)) + 
     scale_fill_gradient2() +  
     theme_void() + 
     theme(legend.position = "none")
