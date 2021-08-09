@@ -158,3 +158,17 @@ plot_cylinder <- function(this_phi)
     theme_void() + 
     theme(legend.position = "none")
 }
+
+# Simulate Lorenz attractor.
+lorenz <- function(t, state, parms)
+{
+  with(as.list(c(state, parms)),
+       {
+         return (list(c(
+           sigma * (y - x),
+           (rho * x) - (x * z) - y,
+           x * y - beta * z
+         )))
+       })
+}
+

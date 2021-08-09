@@ -1,19 +1,7 @@
 library(deSolve)
 library(rgl)
 library(tidyverse)
-
-# Simulate Lorenz attractor.
-lorenz <- function(t, state, parms)
-{
-  with(as.list(c(state, parms)),
-       {
-         return (list(c(
-           sigma * (y - x),
-           (rho * x) - (x * z) - y,
-           x * y - beta * z
-         )))
-       })
-}
+source("Misc/Utils.R")
 
 params <- c(
   rho = 28,
