@@ -125,6 +125,19 @@ my_interp2 <- function(x,y,Z, xp, yp, method = c("linear", "nearest", "constant"
 
 plot_cylinder <- function(this_phi)
 {
+  # Normalise
+  min_val <- min(this_phi)
+  max_val <- max(this_phi)
+  truncate <- NA
+  
+  if (abs(min_val) < 5 & abs(max_val) < 5)
+  {
+    truncate <- ifelse(abs(min_val) > abs(max_val), max_val, -1 * min_val)
+  }
+  
+  this_phi[this_phi > truncate] <- truncate
+  this_phi[this_phi < -truncate] <- -truncate
+  
   x_df <- data.frame(
     y = seq(-2, 2, length.out = 199),
     x = rep(seq(-1, 8, length.out = 449), each = 199),
@@ -132,10 +145,14 @@ plot_cylinder <- function(this_phi)
   )
   
   theta <- seq(0,2*pi,length.out=100)
+  c_vals <- c(-4, -2, -1, -0.5, -0.25, -0.155)
+  contour_breaks_pos <- -c_vals * truncate / 5
+  contour_breaks_neg <- c_vals * truncate / 5
   
   ggplot(x_df, aes(x,y)) + 
     geom_raster(aes(fill = z)) + 
-    geom_contour(aes(z = z), breaks = c(-0.5,-0.04, -0.02, 0.02, 0.04, 0.5)) + 
+    geom_contour(aes(z = z), breaks = contour_breaks_pos) + 
+    geom_contour(aes(z = z), breaks = contour_breaks_neg, linetype = "dashed") + 
     annotate("path", x = 0.5 * cos(theta), y = 0.5 * sin(theta)) + 
     scale_fill_gradient2() +  
     theme_void() + 
