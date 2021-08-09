@@ -25,3 +25,4 @@ if (!require("dendextend")) install.packages("dendextend")
 
 # Matlab
 if (!require("rmatio")) install.packages("rmatio")
+if (!require("QZ"))install.packages("QZ")
