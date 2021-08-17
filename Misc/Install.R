@@ -26,3 +26,9 @@ if (!require("dendextend")) install.packages("dendextend")
 # Matlab
 if (!require("rmatio")) install.packages("rmatio")
 if (!require("QZ"))install.packages("QZ")
+
+# Cartpole
+if (!require("animation")) install.packages("animation")
+if (!require("control")) install.packages("control")
+if (!require("plotrix")) install.packages("plotrix")
+if (!require("scales")) install.packages("scales")
