@@ -1,3 +1,5 @@
+library(control)
+
 my_lqr <- function(a,b,q,r){
 
   care_res <- my_care(a, b, q, r)
