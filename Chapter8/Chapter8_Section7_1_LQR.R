@@ -92,4 +92,3 @@ for (i in 1:length(res$t))
   draw_cart_pendulum(res$y[i,], m, M, l)
   ani.pause()
 }
-
