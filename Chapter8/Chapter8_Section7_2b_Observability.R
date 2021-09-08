@@ -1,6 +1,7 @@
 library(control)
 library(pracma)
 library(tidyverse)
+library(slicotr)
 
 m <- 1
 M <- 5
@@ -43,3 +44,18 @@ B <- B[-1]
 C_full <- diag(3)
 
 map_dfr(array_branch(C_full, 1), test_one)
+
+
+
+my_obs_gram <- function(A, C)
+{
+  C <- c(0,1,0)
+  C <- -C %*% t(C)
+  # A'W + WA + C'C = 0
+  res <- sb03md("C", "X", "N", "N", ncol(A), A, matrix(0, nrow = nrow(A), ncol = ncol(A)), C, ncol(A)^2)
+  
+  return (res$c)
+}
+
+
+det(my_obs_gram(A, C))
