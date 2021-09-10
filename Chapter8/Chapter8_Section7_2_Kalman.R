@@ -33,8 +33,7 @@ V_n <- 1
 
 # Kalman Filter
 
-#k_f <- my_lqr(t(A), t(C), V_d, V_n)
-k_f <- matrix(c(1.9222, 1.3474, -0.61816, -1.8016), ncol = 1)
+k_f <- matrix(my_lqr(t(A), t(C), V_d, V_n)$k, ncol = 1)
 
 # Augment system with additional inputs
 B_aug <- cbind(B, diag(1, 4), 0)
