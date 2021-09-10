@@ -142,7 +142,7 @@ r <- 0.0001
 for (i in 1:100)
 {
   # Random pole placement
-  p <- matrix(c(-.5-3*runif(1), -.5-3*runif(1), -.5-3*runif(1), -.5-3*runif(1)), ncol = 1)
+  p <- matrix(c(-.5-(3*runif(1)), -.5-(3*runif(1)), -.5-(3*runif(1)), -.5-(3*runif(1))), ncol = 1)
   k <- place(A,B,p)
   
   # Run simulation
@@ -159,9 +159,9 @@ for (i in 1:100)
   
   this_cost <- rep(0, length(res$t))
   
-  for (i in 1:length(res$t))
+  for (j in 1:length(res$t))
   {
-    this_cost[i] <- (res$y[i,]-w_r) %*% q %*% (res$y[i,]-w_r) + u(res$y[i,])^2 %*% r
+    this_cost[j] <- (res$y[j,]-w_r) %*% q %*% (res$y[j,]-w_r) + u(res$y[j,])^2 %*% r
   }
   
   this_cost_df <- data.frame(
@@ -188,9 +188,9 @@ state_df %>%
 
 # Plot of cost vs time
 cost_df %>% 
-  filter(run_id %in% sample(unique(run_id), 10)) %>% 
+  filter(run_id %in% sample(unique(run_id), 50)) %>% 
   ggplot(aes(t, cost, colour = run_id)) + 
-  geom_line(alpha = 0.6) +
+  geom_line() + 
   geom_line(data = lqr_cost, colour = "black", size = 1.5, linetype = 2) +
   theme_bw() + 
   theme(legend.position = "none") + 
