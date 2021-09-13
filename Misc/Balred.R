@@ -17,7 +17,7 @@ balred <- function(A, B, C, D, orders)
   if (any(Re(eig(A)) > 0))
   {
     # Unstable
-    res <- ab09md(dico, job, equil, n, m, p, orders, 0, A, B, C, 0, 0.0 , ld_work)
+    res <- ab09md(dico, job, equil, "A", n, m, p, orders, 0, A, B, C, 0.0 , ld_work)
   }
   else
   {
