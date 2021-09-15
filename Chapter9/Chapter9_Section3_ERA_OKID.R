@@ -85,12 +85,12 @@ impulse_era_okid <- my_impulse(sys_era_okid, t)
 # Plotting ----------------------------------------------------------------
 
 res_df <- rbind(
-  data.frame(x1 = y_full$y1[,1], x2 = y_full$y1[,2], input = 1, system = "full"),
-  data.frame(x1 = y_full$y2[,1], x2 = y_full$y2[,2], input = 2, system = "full"),
-  data.frame(x1 = impulse_era$y1[,1], x2 = impulse_era$y1[,2], input = 1, system = "ERA"),
-  data.frame(x1 = impulse_era$y2[,1], x2 = impulse_era$y2[,2], input = 2, system = "ERA"),
-  data.frame(x1 = impulse_era_okid$y1[,1], x2 = impulse_era_okid$y1[,2], input = 1, system = "ERA_OKID"),
-  data.frame(x1 = impulse_era_okid$y2[,1], x2 = impulse_era_okid$y2[,2], input = 2, system = "ERA_OKID")
+  data.frame(state1 = y_full$y1[,1], state2 = y_full$y1[,2], input = "input1", system = "full"),
+  data.frame(state1 = y_full$y2[,1], state2 = y_full$y2[,2], input = "input2", system = "full"),
+  data.frame(state1 = impulse_era$y1[,1], state2 = impulse_era$y1[,2], input = "input1", system = "ERA"),
+  data.frame(state1 = impulse_era$y2[,1], state2 = impulse_era$y2[,2], input = "input2", system = "ERA"),
+  data.frame(state1 = impulse_era_okid$y1[,1], state2 = impulse_era_okid$y1[,2], input = "input1", system = "ERA_OKID"),
+  data.frame(state1 = impulse_era_okid$y2[,1], state2 = impulse_era_okid$y2[,2], input = "input2", system = "ERA_OKID")
 )
 
 # Add t
