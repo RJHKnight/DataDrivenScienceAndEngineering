@@ -16,7 +16,7 @@ w_c <- ctrl_gram(a, b)
 w_o <- obs_gram(a, c)
 
 # Using balred
-bal_res <- balred(a, b, c, d, nrow(b))
+bal_res <- balred(a, b, c, nrow(b))
 
 # Check gramians
 all.equal(ctrl_gram(bal_res$a, bal_res$b), obs_gram(bal_res$a, bal_res$c))

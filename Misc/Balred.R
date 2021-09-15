@@ -1,7 +1,7 @@
 library(pracma)
 library(slicotr)
 
-balred <- function(A, B, C, D, orders)
+balred <- function(A, B, C, orders)
 {
   dico <- 'C'
   job <- 'B'
