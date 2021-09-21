@@ -14,6 +14,8 @@ if (!require("tseries")) install.packages("tseries")
 if (!require("mclust")) install.packages("mclust")
 if (!require("dmvnorm")) install.packages("dmvnorm")
 if (!require("e1071")) install.packages("e1071")
+
+# Keras requires a python install - see keras::install_keras() for more details.
 if (!require("keras")) install.packages("keras")
 
 # Plotting and Visualisation
@@ -35,3 +37,5 @@ if (!require("scales")) install.packages("scales")
 
 # SLICOT - this requires a FORTRAN compiler
 if (!require("animation")) devtools::install_github("rjhknight/slicotr")
+
+if (!require("GA")) install.packages("GA")

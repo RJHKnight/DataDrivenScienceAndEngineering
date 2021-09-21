@@ -98,7 +98,7 @@ res_df_long <- res_df %>%
   group_by(input, system) %>% 
   mutate(t = 1:n()) %>% 
   ungroup() %>% 
-  pivot_longer(contains("x"), "state", "value")
+  pivot_longer(contains("state"), "state", "value")
 
 # Plot
 ggplot(res_df_long, aes(t, value, colour = system)) + 
