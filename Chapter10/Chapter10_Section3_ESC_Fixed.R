@@ -11,6 +11,14 @@ cost_function <- function(u, t)
 
 y_0 <- cost_function(0,0)
 
+# Plot cost_function (with maximum at 5)
+data.frame(u = seq(0,10, 0.1)) %>% 
+  mutate(j = cost_function(u, 0 )) %>% 
+  ggplot(aes(u, j)) + 
+  geom_line() + 
+  annotate("point", x = 5, y = 25, colour = "red") + 
+  theme_bw()
+
 
 # Extremum Seeking Control Params -----------------------------------------
 
