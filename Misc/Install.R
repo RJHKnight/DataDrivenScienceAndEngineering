@@ -12,7 +12,6 @@ if (!require("RSpectra")) install.packages("RSpectra")
 if (!require("pracma")) install.packages("pracma")
 if (!require("tseries")) install.packages("tseries")
 if (!require("mclust")) install.packages("mclust")
-if (!require("dmvnorm")) install.packages("dmvnorm")
 if (!require("e1071")) install.packages("e1071")
 if (!require("signal")) install.packages("signal")
 
