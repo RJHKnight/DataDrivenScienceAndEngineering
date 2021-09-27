@@ -36,6 +36,7 @@ if (!require("plotrix")) install.packages("plotrix")
 if (!require("scales")) install.packages("scales")
 
 # SLICOT - this requires a FORTRAN compiler
+if (!require("devtools")) install.packages("devtools")
 if (!require("animation")) devtools::install_github("rjhknight/slicotr")
 
 if (!require("GA")) install.packages("GA")
