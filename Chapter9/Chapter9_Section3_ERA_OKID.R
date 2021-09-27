@@ -1,5 +1,6 @@
 library(control)
 library(patchwork)
+library(tidyverse)
 library(rmatio)
 source("Misc/ERA.R")
 source("Misc/OKID.R")
@@ -9,6 +10,7 @@ source("Misc/OKID.R")
 
 sys_full <- rmatio::read.mat("DATA/testSys_ABCD.mat")
 
+r <- 10
 t <- 0:((r*5)+1)
 sys_full <- ss(sys_full$A, sys_full$B, sys_full$C, sys_full$D, 1)
 
@@ -55,7 +57,7 @@ yy <- aperm(array(c(y_full$y1, y_full$y2), dim = c(nrow(y_full$y1), ncol(y_full$
 
 # Compute ERA from Impulse Response ---------------------------------------
 
-r <- 10
+
 num_inputs <- ncol(sys_full$B)
 num_outputs <- nrow(sys_full$C)
 
