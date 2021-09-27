@@ -6,7 +6,7 @@ As I work my way through the book, I will attempt to port as many as possible of
 
 ## Installation and Running
 
-All of the main scripts are self contained, the examples are arranged by Chapter the folders `Chapter_x`.
+All of the main scripts are self contained, the examples are arranged by Chapter in the folders `Chapter_x`.
 
 It is recommended to use the RStudio IDE - the whole project can be launched by running `DataDrivenScienceAndEngineering.Rproj`
 
